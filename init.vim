@@ -192,6 +192,11 @@ nnoremap <leader>gup :Gpull --rebase<cr>
 " sets a to open ack search
 nnoremap <leader>a :Ack! '' . <Left><Left><Left><Left>
 
+" sets w to change to next buffer 
+nnoremap <leader>w <C-w>w
+nnoremap <C-w>w <nop>
+nnoremap <C-w><C-w> <nop>
+
 " }}}
 
 " Visual Mappings ------------------- {{{
