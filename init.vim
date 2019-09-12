@@ -197,6 +197,17 @@ nnoremap <leader>w <C-w>w
 nnoremap <C-w>w <nop>
 nnoremap <C-w><C-w> <nop>
 
+" sets p to change to previous buffer 
+nnoremap <leader>p <C-w>p
+nnoremap <C-w>p <nop>
+nnoremap <C-w><C-p> <nop>
+
+" sets a search to always be in regex mode
+nnoremap / /\v
+
+" sets hl to stop highlight from last search
+nnoremap <leader>hl :noh<cr>
+
 " }}}
 
 " Visual Mappings ------------------- {{{
