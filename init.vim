@@ -209,7 +209,7 @@ nnoremap / /\v
 nnoremap <leader>hl :noh<cr>
 
 " sets g to run grep function
-nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+" nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
 
 " }}}
 
