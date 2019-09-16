@@ -61,8 +61,6 @@
 "load managed plugins with pathogen
 execute pathogen#infect()
 execute pathogen#helptags()
-
-source ~/.config/nvim/my_plugins/*
 " }}}
 
 " Settings ------------------- {{{
