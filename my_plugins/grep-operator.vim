@@ -12,7 +12,7 @@ function! s:GrepOperator(type)
     return
   endif
 
-  silent execute "grep! -R " . shellescape(@@) . " ."
+  silent execute "grep! -R --exclude-dir=node_modules " . shellescape(@@) . " ."
   copen
 
   let @@ = saved_unnamed_register
