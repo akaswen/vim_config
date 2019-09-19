@@ -152,6 +152,9 @@ nnoremap <leader>p <C-w>p
 nnoremap <C-w>p <nop>
 nnoremap <C-w><C-p> <nop>
 
+" sets ctrl-shift-f to set up a search
+nnoremap <leader>F :grep! -R --exclude-dir=node_modules '' . \| copen
+
 " Plugin Related normal Mappings -------------- {{{
 " binds :ALToggle to at
 nnoremap <leader>at :ALEToggle<Enter>
@@ -208,7 +211,9 @@ augroup END
 function! AutoSave()
   if strlen(expand('%:e')) > 0 " checks if buffer is a file type and not directory
     if &buftype !=# 'terminal'
-      :w
+      if &modified
+        :w
+      endif
     endif
   endif
 endfunction
