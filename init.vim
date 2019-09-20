@@ -231,6 +231,3 @@ augroup term_no_num
 augroup END
 
 " }}}
-
-source ~/.config/nvim/my_plugins/grep-operator.vim
-source ~/.config/nvim/my_plugins/functional.vim
