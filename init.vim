@@ -232,5 +232,5 @@ augroup END
 
 " }}}
 
-source ~/.config/nvim/my_plugins/*.vim
-
+source ~/.config/nvim/my_plugins/grep-operator.vim
+source ~/.config/nvim/my_plugins/functional.vim
