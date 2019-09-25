@@ -14,6 +14,17 @@ function! s:GrepOperator(type)
 
   silent execute "grep! -R --exclude-dir=node_modules " . shellescape(@@) . " ."
   copen
+  nohl
+  call matchadd('Search', @@)
 
   let @@ = saved_unnamed_register
+endfunction
+
+nnoremap <leader>F :call GrepOperatorFullTextSearch("", ".")
+
+function! g:GrepOperatorFullTextSearch(value, directories)
+  silent execute "grep! -R --exclude-dir=node_modules " . shellescape(a:value) . " " . shellescape(a:directories)
+  copen
+  nohl
+  call matchadd('Search', a:value)
 endfunction

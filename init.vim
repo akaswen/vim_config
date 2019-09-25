@@ -152,9 +152,6 @@ nnoremap <leader>p <C-w>p
 nnoremap <C-w>p <nop>
 nnoremap <C-w><C-p> <nop>
 
-" sets ctrl-shift-f to set up a search
-nnoremap <leader>F :grep! -R --exclude-dir=node_modules '' . \| copen
-
 " Plugin Related normal Mappings -------------- {{{
 " binds :ALToggle to at
 nnoremap <leader>at :ALEToggle<Enter>
