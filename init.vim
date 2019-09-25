@@ -91,6 +91,9 @@ set splitright
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
 filetype indent plugin on
+
+" supposed to make vim faster with syntax highlighting
+set re=1
 " }}}
 
 " Plugins settings ----------------- {{{
@@ -233,7 +236,9 @@ augroup END
 function! RemoveWhiteSpace()
   normal! ma
   %s/\s*$//g
-  execute "w"
+    if &modified
+      execute "w"
+    endif
   normal! 'a
 endfunction
 
