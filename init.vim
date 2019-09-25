@@ -142,12 +142,12 @@ nnoremap <leader>hl :noh<cr>
 " closes tab with q
 nnoremap <leader>q :q<cr>
 
-" sets w to change to next buffer 
+" sets w to change to next buffer
 nnoremap <leader>w <C-w>w
 nnoremap <C-w>w <nop>
 nnoremap <C-w><C-w> <nop>
 
-" sets p to change to previous buffer 
+" sets p to change to previous buffer
 nnoremap <leader>p <C-w>p
 nnoremap <C-w>p <nop>
 nnoremap <C-w><C-p> <nop>
@@ -202,7 +202,7 @@ augroup END
 
 augroup autosave
   autocmd!
-  autocmd VimLeavePre,FocusLost,CursorHold,CursorHoldI,WinLeave,TabLeave,InsertLeave,BufDelete,BufLeave,BufWinLeave * call AutoSave()
+  autocmd VimLeavePre,FocusLost,CursorHold,CursorHoldI,WinLeave,TabLeave,InsertLeave,BufDelete,BufWinLeave * call AutoSave()
 augroup END
 
 function! AutoSave()
@@ -226,5 +226,18 @@ augroup term_no_num
   autocmd!
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
+
+" removes white space from ends of lines upon closing a file
+augroup remove_whitespace
+  autocmd!
+  autocmd BufLeave *.rb,*.jbuilder,*.js,*.yml,*.vim call RemoveWhiteSpace()
+augroup END
+
+function! RemoveWhiteSpace()
+  normal! ma
+  %s/\s*$//g
+  execute "w"
+  normal! 'a
+endfunction
 
 " }}}
