@@ -168,9 +168,6 @@ nnoremap <leader>nt :NERDTreeToggle<Enter>
 " allows copying text to system clipboard with control-c - needs dependency
 " installed to linux sudo apt-get update && sudo apt-get install vim-gtk
 vnoremap <C-c> "+y
-
-" allows search of highlighted text with /
-vnoremap <leader>/ "+y/\v<C-r>"<Enter>
 " }}}
 
 " Insert Mappings ----------------- {{{
