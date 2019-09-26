@@ -1,5 +1,6 @@
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
+nnoremap <leader>F :call GrepOperatorFullTextSearch("", ".")
 
 function! s:GrepOperator(type)
   let saved_unnamed_register = @@
@@ -12,18 +13,14 @@ function! s:GrepOperator(type)
     return
   endif
 
-  silent execute "grep! -R --exclude-dir=node_modules " . shellescape(@@) . " ."
-  copen
-  nohl
-  call matchadd('Search', @@)
+  call GrepOperatorFullTextSearch(@@, ".")
 
   let @@ = saved_unnamed_register
 endfunction
 
-nnoremap <leader>F :call GrepOperatorFullTextSearch("", ".")
 
 function! g:GrepOperatorFullTextSearch(value, directories)
-  silent execute "grep! -R --exclude-dir=node_modules " . shellescape(a:value) . " " . shellescape(a:directories)
+  silent execute "grep! -R --exclude-dir={node_modules,coverage,migrate} " . shellescape(a:value) . " " . shellescape(a:directories)
   copen
   nohl
   call matchadd('Search', a:value)
