@@ -13,8 +13,6 @@ function! s:SearchOperator(type)
   endif
 
   let @/ = @@
-  nohl
-  call matchadd('Search', @/)
 
   let @@ = saved_anonymous_register
 endfunction
