@@ -140,7 +140,17 @@ nnoremap <leader>tn :tabn<cr>
 nnoremap <leader>tp :tabp<cr>
 
 " sets hl to stop highlight from last search
-nnoremap <leader>hl :noh<cr>
+nnoremap <leader>hl :call DeleteSearchMatches()<cr>:noh<cr>
+
+function! DeleteSearchMatches()
+  let matches = getmatches()
+
+  for i in matches
+    if i['group'] ==# 'Search'
+      call matchdelete(i['id'])
+    endif
+  endfor
+endfunction
 
 " closes tab with q
 nnoremap <leader>q :q<cr>
