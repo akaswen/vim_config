@@ -234,12 +234,14 @@ augroup remove_whitespace
 augroup END
 
 function! RemoveWhiteSpace()
-  normal! ma
+  let current_line = line('.')
+
   %s/\s*$//g
-    if &modified
-      execute "w"
-    endif
-  normal! 'a
+  if &modified
+    execute "w"
+  endif
+
+  execute "normal! " . current_line . "G"
 endfunction
 
 " }}}
