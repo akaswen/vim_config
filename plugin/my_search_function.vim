@@ -1,3 +1,10 @@
+" sets a search to always be in regex mode
+nnoremap / /\v
+
+" sets hl to stop highlight from last search
+nnoremap <leader>hl :call DeleteSearchMatches()<cr>:noh<cr>
+
+" allows search with motion
 nnoremap <leader>/ :set operatorfunc=<SID>SearchOperator<cr>g@
 vnoremap <leader>/ :<c-u>call <SID>SearchOperator(visualmode())<cr>
 
@@ -13,6 +20,15 @@ function! s:SearchOperator(type)
     return
   endif
 
+  call DeleteSearchMatches()
+
+  let @/ = @@
+  call matchadd('search', @/)
+
+  let @@ = saved_anonymous_register
+endfunction
+
+function! DeleteSearchMatches()
   let matches = getmatches()
 
   for i in matches
@@ -20,9 +36,5 @@ function! s:SearchOperator(type)
       call matchdelete(i['id'])
     endif
   endfor
-
-  let @/ = @@
-  call matchadd('search', @/)
-
-  let @@ = saved_anonymous_register
 endfunction
+

@@ -124,9 +124,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " sets sv to source any changes to init.vim
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" sets a search to always be in regex mode
-nnoremap / /\v
-
 " sets tb to open new term to bottom
 nnoremap <leader>tb :sp \| res 20 \| term<Enter>
 
@@ -138,19 +135,6 @@ nnoremap <leader>tn :tabn<cr>
 
 " sets tp to previous tab
 nnoremap <leader>tp :tabp<cr>
-
-" sets hl to stop highlight from last search
-nnoremap <leader>hl :call DeleteSearchMatches()<cr>:noh<cr>
-
-function! DeleteSearchMatches()
-  let matches = getmatches()
-
-  for i in matches
-    if i['group'] ==# 'Search'
-      call matchdelete(i['id'])
-    endif
-  endfor
-endfunction
 
 " closes tab with q
 nnoremap <leader>q :q<cr>
