@@ -87,6 +87,13 @@ colorscheme gruvbox
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
+
+" config for vim airlines
+let g:airline_section_c = '%t%m (buf %n)'
+let g:airline_section_y = ''
+let g:airline_section_x = ''
+let g:airline_section_z = 'line: %l/%L, col: %c'
+let g:airline_theme="dark"
 " }}}
 
 " Normal Mappings----------------- {{{
