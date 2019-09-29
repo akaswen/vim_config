@@ -1,33 +1,5 @@
-" plugins ------------------ {{{
-" using latest version of neovim
-" install instructions: https://github.com/neovim/neovim/wiki/Installing-Neovim
-
-" everything loaded with pathogen
-" mkdir -p ~/.config/nvim/autoload ~/.config/nvim/bundle && curl -LSso ~/.config/nvim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-
-" ale
-" cd ~/.config/nvim/bundle && git clone https://github.com/w0rp/ale
-
-" ctrlp.vim
-" cd ~/.config/nvim/bundle && git clone https://github.com/ctrlpvim/ctrlp.vim
-
-" deoplete
-" autocompletion
-" cd ~/.config/nvim/bundle && git clone https://github.com/shougo/deoplete.nvim
-
-" gruvbox color scheme
-" git clone https://github.com/morhetz/gruvbox.git ~/.config/nvim/bundle/gruvbox
-
-" nerdcommenter
-" cd ~/.config/nvim/bundle && git clone https://github.com/scrooloose/nerdcommenter
-
-" vim-indent-guides
-" cd ~/.config/nvim/bundle && git clone https://github.com/nathanaelkane/vim-indent-guides
-
-"load managed plugins with pathogen
 execute pathogen#infect()
 execute pathogen#helptags()
-" }}}
 
 " Settings and Variables----------------- {{{
 
