@@ -14,29 +14,7 @@ function! s:FormatJSON(type)
   call <SID>IndentBrackets()
   normal! `s
   call <SID>IndentCommas()
-  normal! `s
-endfunction
-
-function! s:IndentCommas()
-  normal %
-  let finishLine = line('.')
-  normal `s
-  let currentLine = line('.')
-  while currentLine < finishLine
-    if getline('.') !~# ','
-      normal! j0
-    else
-      execute "normal! f,a\<cr>"
-      let previousQuotes = count(getline(currentLine), "\"")
-      while previousQuotes / 2.0 ==# 1.5
-        execute "normal! 0dwi\<c-h>\<space>"
-        execute "normal! f,a\<cr>"
-        let previousQuotes = count(getline(currentLine), "\"")
-      endwhile
-    endif
-
-    let currentLine = line('.')
-  endwhile
+  "normal! `s
 endfunction
 
 function! s:IndentBrackets()
@@ -49,7 +27,19 @@ function! s:IndentBrackets()
 
   let currentIndent = indent(line('.'))
   while currentIndent !=# indent(line("'s"))
-    execute "normal! /" . matchingExpression . "\<cr>"
+    let currentCharacter = strcharpart(getline('.')[col('.') - 1:], 0, 1)
+
+    if currentCharacter !=# '{'
+      execute "normal! /" . matchingExpression . "\<cr>"
+    endif
+
+    call <SID>IndentSingleBracket()
+
+    let currentIndent = indent(line('.'))
+  endwhile
+endfunction
+
+function! s:IndentSingleBracket()
     let currentCharacter = strcharpart(getline('.')[col('.') - 1:], 0, 1)
 
     if currentCharacter =~# "\\v[{|[]"
@@ -67,8 +57,36 @@ function! s:IndentBrackets()
     endif
 
     execute "call \<SID>EvenIndentation(" . currentIndent . ", " . setterIndent . ")"
-    let currentIndent = indent(line('.'))
+endfunction
+
+function! s:IndentCommas()
+  normal %
+  let finishLine = line('.')
+  normal `s
+  let currentLine = line('.')
+  while currentLine < finishLine
+    call <SID>IndentSingleComma(currentLine)
+    normal! ma
+    let currentLine = line('.')
+    normal! `s%
+    let finishLine = line('.')
+    normal! `a
   endwhile
+endfunction
+
+function! s:IndentSingleComma(currentLine)
+    let currentLineContents = getline('.')
+    if currentLineContents !~# ','
+      normal! j0
+    else
+      execute "normal! f,a\<cr>"
+      let previousQuotes = count(getline(a:currentLine), "\"")
+      while previousQuotes % 2
+        execute "normal! 0dwi\<c-h>\<space>"
+        execute "normal! f,a\<cr>"
+        let previousQuotes = count(getline(a:currentLine), "\"")
+      endwhile
+    endif
 endfunction
 
 function! s:EvenIndentation(currentIndent, setterIndent)
