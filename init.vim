@@ -229,4 +229,12 @@ function! RemoveWhiteSpace()
   execute "normal! " . current_line . "G"
 endfunction
 
+" Autocmd for plugins ---------------- {{{
+augroup nerd_tree
+  autocmd!
+  autocmd vimenter * NERDTree | execute "normal! \<c-w>w"
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
+"  }}}
+
 " }}}
