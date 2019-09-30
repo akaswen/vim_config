@@ -1,6 +1,14 @@
 nnoremap <leader>s :set operatorfunc=<SID>Surround<cr>g@
 vnoremap <leader>s :<c-u>call <SID>Surround(visualmode())<cr>
 nnoremap cs :call <SID>ChangeSurround()<cr>
+nnoremap ds :call <SID>DeleteSurround()<cr>
+
+function! s:DeleteSurround()
+  let deleteCharacter = nr2char(getchar())
+
+  execute "normal! vi" . deleteCharacter . "\<esc>"
+  normal lx`<hx
+endfunction
 
 function! s:ChangeSurround()
   let previousCharacter = nr2char(getchar())
