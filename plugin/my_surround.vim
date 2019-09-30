@@ -3,14 +3,44 @@ vnoremap <leader>s :<c-u>call <SID>Surround(visualmode())<cr>
 nnoremap cs :call <SID>ChangeSurround()<cr>
 
 function! s:ChangeSurround()
-  let previousCharacter = getchar()
-  let newCharacter = getchar()
+  let previousCharacter = nr2char(getchar())
+  let newCharacter = nr2char(getchar())
+  let currentCharacter = strcharpart(getline('.')[col('.') - 1:], 0, 1)
 
-  execute "normal! ?" . previousCharacter . "\<cr>x"
+  let previousOpenCharacter = previousCharacter
+  let previousCloseCharacter = previousCharacter
+  let newOpenCharacter = newCharacter
+
+  if previousCharacter ==# "(" || previousCharacter ==# ")"
+    let previousOpenCharacter = "("
+    let previousCloseCharacter = ")"
+  elseif previousCharacter ==# "[" || previousCharacter ==# "]"
+    let previousOpenCharacter = "["
+    let previousCloseCharacter = "]"
+  elseif previousCharacter ==# "{" || previousCharacter ==# "}"
+    let previousOpenCharacter = "{"
+    let previousCloseCharacter = "}"
+  endif
+
+  if newOpenCharacter ==# "(" || newOpenCharacter ==# ")"
+    let newOpenCharacter = "("
+  elseif newOpenCharacter ==# "[" || newOpenCharacter ==# "]"
+    let newOpenCharacter = "["
+  elseif newOpenCharacter ==# "{" || newOpenCharacter ==# "}"
+    let newOpenCharacter = "{"
+  endif
+
+
+  if currentCharacter ==# previousOpenCharacter
+    normal! x
+  else
+    execute "normal! ?" . previousOpenCharacter . "\<cr>x"
+  endif
+
   call <SID>AddOpening(newCharacter)
-  execute "normal! /" . previousCharacter . "\<cr>x"
+  execute "normal! /" . previousCloseCharacter . "\<cr>xh"
   call <SID>AddClosing(newCharacter)
-  execute "normal! ?" . newCharacter . "\<cr>"
+  execute "normal! ?" . newOpenCharacter . "\<cr>"
 endfunction
 
 function! s:Surround(mode)
@@ -34,23 +64,23 @@ function! s:SurroundMarks(char)
 endfunction
 
 function! s:AddOpening(char)
-  if a:char ==# 34
+  if a:char ==# "\""
     let openingCharacter = "\""
-  elseif a:char ==# 39
+  elseif a:char ==# "'"
     let openingCharacter = "'"
-  elseif a:char ==# 91
+  elseif a:char ==# "["
     let openingCharacter = "["
-  elseif a:char ==# 93
+  elseif a:char ==# "]"
     let openingCharacter = "[ "
-  elseif a:char ==# 123
+  elseif a:char ==# "{"
     let openingCharacter = "{"
-  elseif a:char ==# 125
+  elseif a:char ==# "}"
     let openingCharacter = "{ "
-  elseif a:char ==# 40
+  elseif a:char ==# "("
     let openingCharacter = "("
-  elseif a:char ==# 41
+  elseif a:char ==# ")"
     let openingCharacter = "( "
-  elseif a:char ==# 124
+  elseif a:char ==# "|"
     let openingCharacter = "|"
   else
     return
@@ -60,23 +90,23 @@ function! s:AddOpening(char)
 endfunction
 
 function! s:AddClosing(char)
-  if a:char ==# 34
+  if a:char ==# "\""
     let closingCharacter = "\""
-  elseif a:char ==# 39
+  elseif a:char ==# "'"
     let closingCharacter = "'"
-  elseif a:char ==# 91
+  elseif a:char ==# "["
     let closingCharacter = "]"
-  elseif a:char ==# 93
+  elseif a:char ==# "]"
     let closingCharacter = " ]"
-  elseif a:char ==# 123
+  elseif a:char ==# "{"
     let closingCharacter = "}"
-  elseif a:char ==# 125
+  elseif a:char ==# "}"
     let closingCharacter = " }"
-  elseif a:char ==# 40
+  elseif a:char ==# "("
     let closingCharacter = ")"
-  elseif a:char ==# 41
+  elseif a:char ==# ")"
     let closingCharacter = " )"
-  elseif a:char ==# 124
+  elseif a:char ==# "|"
     let closingCharacter = "|"
   else
     return
