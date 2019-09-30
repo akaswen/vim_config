@@ -128,6 +128,18 @@ nnoremap <leader>p <C-w>p
 nnoremap <C-w>p <nop>
 nnoremap <C-w><C-p> <nop>
 
+" shortkey for switching buffers
+nnoremap <leader>b :call SwitchBuffers()<left>
+
+function! SwitchBuffers(num)
+  let currentBuffer = bufnr('%')
+  while currentBuffer !=# a:num
+    execute "normal! \<c-w>w"
+
+    let currentBuffer = bufnr('%')
+  endwhile
+endfunction
+
 " Plugin Related normal Mappings -------------- {{{
 " binds :ALToggle to at
 nnoremap <leader>at :ALEToggle<Enter>
