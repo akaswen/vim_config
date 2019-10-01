@@ -232,7 +232,7 @@ endfunction
 " Autocmd for plugins ---------------- {{{
 augroup nerd_tree
   autocmd!
-  autocmd vimenter * NERDTree | execute "normal! \<c-w>w"
+  autocmd vimenter * NERDTree | execute "normal! \<c-w>w" | if expand('%') == '' | execute "normal! \<c-w>w" | endif
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
 "  }}}
