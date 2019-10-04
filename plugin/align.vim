@@ -18,7 +18,11 @@ function! s:Align()
 
     normal! j
     let currentLine = line('.')
+    if currentLine ==# line('$')
+      let currentLine += 1
+    endif
   endwhile
+
 
   normal! `<
   let currentLine = line('.')
@@ -33,6 +37,9 @@ function! s:Align()
 
     normal! j
     let currentLine = line('.')
+    if currentLine ==# line('$')
+      let currentLine += 1
+    endif
   endwhile
   normal! `<
 endfunction
