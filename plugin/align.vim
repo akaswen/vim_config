@@ -16,10 +16,11 @@ function! s:Align()
       let alignColumn = col
     endif
 
-    normal! j
-    let currentLine = line('.')
     if currentLine ==# line('$')
       let currentLine += 1
+    else
+      normal! j
+      let currentLine = line('.')
     endif
   endwhile
 
