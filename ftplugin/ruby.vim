@@ -1,4 +1,4 @@
-inoremap <Enter> <Enter><esc>:call <SID>CompleteMethod()<cr>i
+inoremap <Enter> <Enter><esc>:call <SID>CompleteMethod()<cr>a
 
 function! s:CompleteMethod()
   let lineNumber = line('.')
@@ -36,5 +36,5 @@ function! s:IndentThisLine(num)
 
     let indentNumber -= 1
   endwhile
-  execute "normal! r\<space>"
+  normal! x
 endfunction
