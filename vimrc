@@ -70,30 +70,30 @@ set re=1
 
 " Plugins settings ----------------- {{{
 " for ctrlp to allow all files to load
-let g:ctrlp_max_files=0
-
-" ctrlp ignore everything in .gitignore file
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
-" sets highlight color to allow ale to work with gruvbox
-highlight ALEWarning ctermbg=65
-
-" Use deoplete for autocompletion
-let g:deoplete#enable_at_startup = 1
-
-colorscheme gruvbox
-
-" config for indent lines
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_auto_colors = 0
-
-" config for vim airlines
-let g:airline_section_c = '%t%m (buf %n)'
-let g:airline_section_y = ''
-let g:airline_section_x = ''
-let g:airline_section_z = 'line: %l/%L, col: %c'
-let g:airline_theme="dark"
+"let g:ctrlp_max_files=0
+"
+"" ctrlp ignore everything in .gitignore file
+"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+"
+"" sets highlight color to allow ale to work with gruvbox
+"highlight ALEWarning ctermbg=65
+"
+"" Use deoplete for autocompletion
+"let g:deoplete#enable_at_startup = 1
+"
+"colorscheme gruvbox
+"
+"" config for indent lines
+"let g:indent_guides_enable_on_vim_startup = 1
+"let g:indent_guides_guide_size = 1
+"let g:indent_guides_auto_colors = 0
+"
+"" config for vim airlines
+"let g:airline_section_c = '%t%m (buf %n)'
+"let g:airline_section_y = ''
+"let g:airline_section_x = ''
+"let g:airline_section_z = 'line: %l/%L, col: %c'
+"let g:airline_theme="dark"
 " }}}
 
 " Normal Mappings----------------- {{{
@@ -141,11 +141,11 @@ function! SwitchBuffers(num)
 endfunction
 
 " Plugin Related normal Mappings -------------- {{{
-" binds :ALToggle to at
-nnoremap <leader>at :ALEToggle<Enter>
-
-" binds :NERDTreeToggle to nt
-nnoremap <leader>nt :NERDTreeToggle<Enter>
+"" binds :ALToggle to at
+"nnoremap <leader>at :ALEToggle<Enter>
+"
+"" binds :NERDTreeToggle to nt
+"nnoremap <leader>nt :NERDTreeToggle<Enter>
 " }}}
 " }}}
 
@@ -159,7 +159,7 @@ vnoremap <C-c> "+y
 
 " Plugin Related Insert Mappings ---- {{{
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " }}}
 "" }}}
 
@@ -167,15 +167,15 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Plugin Related Command Mappings ------- {{{
 " ZSH abbreviations for fugitive commands
-cnoreabbrev gp Gpush
-cnoreabbrev ggfl Gpush --force
-cnoreabbrev gup Gpull --rebase
+"cnoreabbrev gp Gpush
+"cnoreabbrev ggfl Gpush --force
+"cnoreabbrev gup Gpull --rebase
 " }}}
 " }}}
 
 "" Terminal Mappings --------------------- {{{
 " allows escaping from terminal with just esc key
-tnoremap <Esc> <C-\><C-n>
+"tnoremap <Esc> <C-\><C-n>
 " }}}
 
 " Autocmd Groups ---------------------------- {{{
@@ -207,10 +207,10 @@ augroup jbuilder_files
 augroup END
 
 " removes numbers from terminal
-augroup term_no_num
-  autocmd!
-  autocmd TermOpen * setlocal nonumber norelativenumber
-augroup END
+"augroup term_no_num
+"  autocmd!
+"  autocmd TermOpen * setlocal nonumber norelativenumber
+"augroup END
 
 " removes white space from ends of lines upon closing a file
 augroup remove_whitespace
@@ -230,11 +230,11 @@ function! RemoveWhiteSpace()
 endfunction
 
 " Autocmd for plugins ---------------- {{{
-augroup nerd_tree
-  autocmd!
-  autocmd vimenter * NERDTree | execute "normal! \<c-w>w" | if expand('%') == '' | execute "normal! \<c-w>w" | endif
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
+"augroup nerd_tree
+"  autocmd!
+"  autocmd vimenter * NERDTree | execute "normal! \<c-w>w" | if expand('%') == '' | execute "normal! \<c-w>w" | endif
+"  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"augroup END
 "  }}}
 
 " }}}
