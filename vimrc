@@ -66,6 +66,12 @@ filetype indent plugin on
 
 " supposed to make vim faster with syntax highlighting
 set re=1
+
+" highlights searched term
+set hlsearch
+
+" auto jumps to first match for search
+set incsearch
 " }}}
 
 " Plugins settings ----------------- {{{
