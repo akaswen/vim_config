@@ -70,30 +70,30 @@ set re=1
 
 " Plugins settings ----------------- {{{
 " for ctrlp to allow all files to load
-"let g:ctrlp_max_files=0
-"
-"" ctrlp ignore everything in .gitignore file
-"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-"
-"" sets highlight color to allow ale to work with gruvbox
-"highlight ALEWarning ctermbg=65
-"
-"" Use deoplete for autocompletion
-"let g:deoplete#enable_at_startup = 1
-"
-"colorscheme gruvbox
-"
-"" config for indent lines
-"let g:indent_guides_enable_on_vim_startup = 1
-"let g:indent_guides_guide_size = 1
-"let g:indent_guides_auto_colors = 0
-"
-"" config for vim airlines
-"let g:airline_section_c = '%t%m (buf %n)'
-"let g:airline_section_y = ''
-"let g:airline_section_x = ''
-"let g:airline_section_z = 'line: %l/%L, col: %c'
-"let g:airline_theme="dark"
+let g:ctrlp_max_files=0
+
+" ctrlp ignore everything in .gitignore file
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+" sets highlight color to allow ale to work with gruvbox
+highlight ALEWarning ctermbg=65
+
+" Use deoplete for autocompletion
+let g:deoplete#enable_at_startup = 1
+
+colorscheme gruvbox
+
+" config for indent lines
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_auto_colors = 0
+
+" config for vim airlines
+let g:airline_section_c = '%t%m (buf %n)'
+let g:airline_section_y = ''
+let g:airline_section_x = ''
+let g:airline_section_z = 'line: %l/%L, col: %c'
+let g:airline_theme="dark"
 " }}}
 
 " Normal Mappings----------------- {{{
@@ -103,11 +103,11 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " sets sv to source any changes to init.vim
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" sets tb to open new term to bottom
-nnoremap <leader>tb :sp \| res 20 \| term<Enter>
-
-" sets tr to open new term to right
-nnoremap <leader>tr :vsp \| term<Enter>
+"" sets tb to open new term to bottom
+"nnoremap <leader>tb :sp \| res 20 \| term<Enter>
+"
+"" sets tr to open new term to right
+"nnoremap <leader>tr :vsp \| term<Enter>
 
 " sets tn to next tab
 nnoremap <leader>tn :tabn<cr>
@@ -141,18 +141,23 @@ function! SwitchBuffers(num)
 endfunction
 
 " Plugin Related normal Mappings -------------- {{{
-"" binds :ALToggle to at
-"nnoremap <leader>at :ALEToggle<Enter>
-"
-"" binds :NERDTreeToggle to nt
-"nnoremap <leader>nt :NERDTreeToggle<Enter>
+" binds :ALToggle to at
+nnoremap <leader>at :ALEToggle<Enter>
+
+" binds :NERDTreeToggle to nt
+nnoremap <leader>nt :NERDTreeToggle<Enter>
 " }}}
 " }}}
 
 " Visual Mappings----------------- {{{
-" allows copying text to system clipboard with control-c - needs dependency
-" installed to linux sudo apt-get update && sudo apt-get install vim-gtk
-vnoremap <C-c> "+y
+" allows copying text to system clipboard with control-c - 
+" linux needs dependency installed, but mac uses something else
+" sudo apt-get update && sudo apt-get install vim-gtk
+if has('gtk')
+  vnoremap <C-c> "*y
+else
+  vnoremap <C-c> :w !pbcopy<cr><cr>
+endif
 " }}}
 
 " Insert Mappings ----------------- {{{
@@ -167,9 +172,9 @@ vnoremap <C-c> "+y
 
 " Plugin Related Command Mappings ------- {{{
 " ZSH abbreviations for fugitive commands
-"cnoreabbrev gp Gpush
-"cnoreabbrev ggfl Gpush --force
-"cnoreabbrev gup Gpull --rebase
+cnoreabbrev gp Gpush
+cnoreabbrev ggfl Gpush --force
+cnoreabbrev gup Gpull --rebase
 " }}}
 " }}}
 
@@ -230,11 +235,11 @@ function! RemoveWhiteSpace()
 endfunction
 
 " Autocmd for plugins ---------------- {{{
-"augroup nerd_tree
-"  autocmd!
-"  autocmd vimenter * NERDTree | execute "normal! \<c-w>w" | if expand('%') == '' | execute "normal! \<c-w>w" | endif
-"  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-"augroup END
+augroup nerd_tree
+  autocmd!
+  autocmd vimenter * NERDTree | execute "normal! \<c-w>w" | if expand('%') == '' | execute "normal! \<c-w>w" | endif
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 "  }}}
 
 " }}}
