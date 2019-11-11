@@ -72,6 +72,9 @@ set hlsearch
 
 " auto jumps to first match for search
 set incsearch
+
+" make backspace work normally
+set backspace=indent,eol,start
 " }}}
 
 " Plugins settings ----------------- {{{
@@ -100,6 +103,12 @@ let g:airline_section_y = ''
 let g:airline_section_x = ''
 let g:airline_section_z = 'line: %l/%L, col: %c'
 let g:airline_theme="dark"
+
+" shows hidden files by default in nerdtree
+let NERDTreeShowHidden=1
+
+let g:NERDTreeWinSize=50
+
 " }}}
 
 " Normal Mappings----------------- {{{
