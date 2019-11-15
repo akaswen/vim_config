@@ -168,11 +168,14 @@ nnoremap <leader>nt :NERDTreeToggle<Enter>
 " allows copying text to system clipboard with control-c - 
 " linux needs dependency installed, but mac uses something else
 " sudo apt-get update && sudo apt-get install vim-gtk
-if has('gtk')
-  vnoremap <C-c> "*y
-else
-  vnoremap <C-c> :w !pbcopy<cr><cr>
-endif
+
+vnoremap <C-c> :<C-u>call CopyToClipboard()<cr>
+
+function! CopyToClipboard()
+  normal! `<v`>"*y
+  " TODO figure out this for mac vnoremap <C-c> :w !pbcopy<cr><cr>
+endfunction
+
 " }}}
 
 " Insert Mappings ----------------- {{{
