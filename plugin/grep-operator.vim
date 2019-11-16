@@ -1,6 +1,6 @@
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
-nnoremap <leader>F :call GrepOperatorFullTextSearch("", ".")
+nnoremap <leader>F :call GrepOperatorFullTextSearch("", ".")<Left><Left><Left><Left><Left><Left><Left>
 
 function! s:GrepOperator(type)
   let saved_unnamed_register = @@

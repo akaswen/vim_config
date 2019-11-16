@@ -2,19 +2,22 @@ nnoremap <leader>j :set operatorfunc=<SID>FormatJSON<cr>g@
 vnoremap <leader>j :<c-u>call <SID>FormatJSON(visualmode())<cr>
 
 function! s:FormatJSON(type)
-  if a:type ==? 'v'
-    normal! `<ms
-  elseif a:type ==? 'char'
-    normal! `[bms
-  else
-    return
-  endif
+  "if a:type ==? 'v'
+    "normal! `<ms
+  "elseif a:type ==? 'char'
+    "normal! `[bms
+  "else
+    "return
+  "endif
 
-  normal! `s
-  call <SID>IndentBrackets()
-  normal! `s
-  call <SID>IndentCommas()
-  "normal! `s
+ruby << EOF
+  VIM_PATH = Vim.evaluate("$VIM")
+  $LOAD_PATH << File.join(VIM_PATH, 'plugin', 'lib')
+
+  require 'json_manipulator'
+
+  test = JsonManipulator::Stuff.new.test
+EOF
 endfunction
 
 function! s:IndentBrackets()
