@@ -28,3 +28,7 @@
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/tabnine-vim"]
+	path = bundle/tabnine-vim
+	url = https://github.com/zxqfl/tabnine-vim
+	branch = master
