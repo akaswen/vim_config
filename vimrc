@@ -157,6 +157,33 @@ function! SwitchBuffers(num)
   endwhile
 endfunction
 
+nnoremap t :call OpenQuickFix('t')<cr>
+nnoremap v :call OpenQuickFix('v')<cr>
+nnoremap s :call OpenQuickFix('s')<cr>
+nnoremap <cr> :call OpenQuickFix('enter')<cr>
+
+function! OpenQuickFix(letter)
+  if &buftype ==# 'quickfix'
+    if a:letter ==# 't'
+      set switchbuf=newtab
+    elseif a:letter ==# 'v'
+      set switchbuf=vsplit
+    elseif a:letter ==# 's'
+      set switchbuf=split
+    elseif a:letter ==# 'enter'
+      set switchbuf=useopen
+    endif
+
+    execute "normal! \<cr>"
+  else
+    if a:letter ==# 'enter'
+      execute "normal! \<cr>"
+    else
+      execute "normal! " . a:letter
+    endif
+  endif
+endfunction
+
 " Plugin Related normal Mappings -------------- {{{
 " binds :ALToggle to at
 nnoremap <leader>at :ALEToggle<Enter>
