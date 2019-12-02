@@ -219,14 +219,9 @@ endfunction
 
 " Plugin Related Command Mappings ------- {{{
 " ZSH abbreviations for fugitive commands
-cnoremap gp call PushCurrentBranch('')<cr>
-cnoremap ggfl call PushCurrentBranch('force ')<cr>
+cnoreabbrev gp Gpush
+cnoreabbrev ggfl Gpush --force
 cnoreabbrev gup Gpull --rebase origin
-
-function! PushCurrentBranch(force)
-  let branch = FugitiveHead()
-  silent execute "Gpush origin " . a:force . branch
-endfunction
 
 " }}}
 " }}}

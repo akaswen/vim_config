@@ -20,7 +20,7 @@ endfunction
 
 
 function! g:GrepOperatorFullTextSearch(value, directories)
-  silent execute "grep! -R --exclude-dir={node_modules,coverage,migrate} " . shellescape(a:value) . " " . shellescape(a:directories)
+  silent execute "grep! -R --exclude-dir={node_modules,coverage} " . shellescape(a:value) . " " . shellescape(a:directories)
   copen
   nohl
   call matchadd('Search', a:value)
