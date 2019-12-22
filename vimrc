@@ -157,6 +157,7 @@ function! SwitchBuffers(num)
   endwhile
 endfunction
 
+" quickfix window mappings
 nnoremap t :call OpenQuickFix('t')<cr>
 nnoremap v :call OpenQuickFix('v')<cr>
 nnoremap s :call OpenQuickFix('s')<cr>
@@ -181,6 +182,17 @@ function! OpenQuickFix(letter)
     else
       execute "normal! " . a:letter
     endif
+  endif
+endfunction
+
+" vimdiff mappings
+nnoremap <leader>d :call ToggleDiffMode()<cr>
+
+function! ToggleDiffMode()
+  if &diff
+    diffo
+  else
+    diffthis
   endif
 endfunction
 
@@ -285,9 +297,20 @@ endfunction
 " Autocmd for plugins ---------------- {{{
 augroup nerd_tree
   autocmd!
-  autocmd vimenter * NERDTree | execute "normal! \<c-w>w" | if expand('%') == '' | execute "normal! \<c-w>w" | endif
+  
+  autocmd vimenter * call OpenNerdTree()
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
+
+function! OpenNerdTree()
+  if !(&diff)
+    NERDTree
+    execute "normal! \<c-w>w"
+    if expand('%') == '' 
+      execute "normal! \<c-w>w"
+    endif
+  endif
+endfunction
 "  }}}
 
 " }}}
