@@ -121,10 +121,10 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "" sets tb to open new term to bottom
-"nnoremap <leader>tb :sp \| res 20 \| term<Enter>
+nnoremap <leader>tb :sp \| res 20 \| term<Enter>
 "
 "" sets tr to open new term to right
-"nnoremap <leader>tr :vsp \| term<Enter>
+nnoremap <leader>tr :vsp \| term<Enter>
 
 " sets tn to next tab
 nnoremap <leader>tn :tabn<cr>
@@ -136,12 +136,10 @@ nnoremap <leader>tp :tabp<cr>
 nnoremap <leader>q :q<cr>
 
 " sets w to change to next buffer
-nnoremap <leader>w <C-w>w
 nnoremap <C-w>w <nop>
 nnoremap <C-w><C-w> <nop>
 
 " sets p to change to previous buffer
-nnoremap <leader>p <C-w>p
 nnoremap <C-w>p <nop>
 nnoremap <C-w><C-p> <nop>
 
@@ -196,6 +194,12 @@ function! ToggleDiffMode()
   endif
 endfunction
 
+" allows changing windows with alt + movement key
+nnoremap <C-h> <c-w>h
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+nnoremap <C-l> <c-w>l
+
 " Plugin Related normal Mappings -------------- {{{
 " binds :ALToggle to at
 nnoremap <leader>at :ALEToggle<Enter>
@@ -220,10 +224,13 @@ endfunction
 " }}}
 
 " Insert Mappings ----------------- {{{
+" allows changing windows with alt + movement key
+inoremap <C-h> <Esc><c-w>h
+inoremap <C-j> <Esc><c-w>j
+inoremap <C-k> <Esc><c-w>k
+inoremap <C-l> <Esc><c-w>l
 
 " Plugin Related Insert Mappings ---- {{{
-" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " }}}
 "" }}}
 
@@ -239,8 +246,11 @@ cnoreabbrev gup Gpull --rebase origin
 " }}}
 
 "" Terminal Mappings --------------------- {{{
-" allows escaping from terminal with just esc key
-"tnoremap <Esc> <C-\><C-n>
+" allows changing windows with alt + movement key
+tnoremap <C-h> <c-\><c-n><c-w>h
+tnoremap <C-j> <c-\><c-n><c-w>j
+tnoremap <C-k> <c-\><c-n><c-w>k
+tnoremap <C-l> <c-\><c-n><c-w>l
 " }}}
 
 " Autocmd Groups ---------------------------- {{{
