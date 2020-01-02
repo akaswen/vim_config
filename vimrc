@@ -1,7 +1,7 @@
 execute pathogen#infect()
 execute pathogen#helptags()
 
-" Settings and Variables----------------- {{{
+" Settings and Variables----------------- {{{{{{{{{{{{
 
 " Enable syntax highlighting
 syntax enable
@@ -77,7 +77,7 @@ set incsearch
 
 " make backspace work normally
 set backspace=indent,eol,start
-" }}}
+" }}}}}}}}}}}}
 
 " Plugins settings ----------------- {{{
 " for ctrlp to allow all files to load
@@ -121,10 +121,10 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 "" sets tb to open new term to bottom
-nnoremap <leader>tb :sp \| res 20 \| term<Enter>
+nnoremap <leader>tb :term ++rows=20<cr>
 "
 "" sets tr to open new term to right
-nnoremap <leader>tr :vsp \| term<Enter>
+nnoremap <leader>tr :vert term<cr>
 
 " sets tn to next tab
 nnoremap <leader>tn :tabn<cr>
@@ -200,6 +200,11 @@ nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
 
+" open terminal with F12
+nnoremap <F12> :term ++rows=20<cr>
+
+nnoremap <leader>l <c-l>
+
 " Plugin Related normal Mappings -------------- {{{
 " binds :ALToggle to at
 nnoremap <leader>at :ALEToggle<Enter>
@@ -229,9 +234,6 @@ inoremap <C-h> <Esc><c-w>h
 inoremap <C-j> <Esc><c-w>j
 inoremap <C-k> <Esc><c-w>k
 inoremap <C-l> <Esc><c-w>l
-
-" Plugin Related Insert Mappings ---- {{{
-" }}}
 "" }}}
 
 " Command Mappings -----------------{{{
@@ -245,12 +247,16 @@ cnoreabbrev gup Gpull --rebase origin
 " }}}
 " }}}
 
-"" Terminal Mappings --------------------- {{{
+" Terminal Mappings --------------------- {{{
 " allows changing windows with alt + movement key
 tnoremap <C-h> <c-\><c-n><c-w>h
 tnoremap <C-j> <c-\><c-n><c-w>j
 tnoremap <C-k> <c-\><c-n><c-w>k
 tnoremap <C-l> <c-\><c-n><c-w>l
+
+" close terminal with F12
+tnoremap <F12> <C-W>N:q!<cr>
+
 " }}}
 
 " Autocmd Groups ---------------------------- {{{
