@@ -200,9 +200,7 @@ nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
 
-" open terminal with F12
-nnoremap <F12> :term ++rows=20<cr>
-
+" redraw terminal with leader l
 nnoremap <leader>l <c-l>
 
 " Plugin Related normal Mappings -------------- {{{
