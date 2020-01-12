@@ -220,8 +220,7 @@ nnoremap <leader>nt :NERDTreeToggle<Enter>
 vnoremap <C-c> :<C-u>call CopyToClipboard()<cr>
 
 function! CopyToClipboard()
-  normal! `<v`>"*y
-  " TODO figure out this for mac vnoremap <C-c> :w !pbcopy<cr><cr>
+  normal! `<v`>"+y
 endfunction
 
 " }}}
