@@ -20,7 +20,33 @@ EOF
 endfunction
 
 function! s:OpenTerminal()
+ruby << EOF
+  require 'date'
+
+  sessions = `tmux ls`.split("\n")
+  if sessions.length > 1 || sessions[0].include?(":")
+    sessions.map! do |session_string|
+      {
+        session_name: session_string.split(":").first,
+        session_date: DateTime.parse(session_string.scan(/\(created (.*\d)\)/).first.first)
+      }
+    end
+    sessions.sort_by! { |ses| ses[:session_date] }.reverse!
+    Vim.command("call <SID>OpenExistingSession(#{sessions.first[:session_name]})")
+  else
+    Vim.command("call <SID>OpenNewSession()")
+  end
+EOF
+endfunction
+
+function! s:OpenNewSession()
   term tmux
+  wincmd J
+  resize 20
+endfunction
+
+function! s:OpenExistingSession(session_name)
+  execute "term tmux a -t " . a:session_name
   wincmd J
   resize 20
 endfunction
