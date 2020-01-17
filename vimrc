@@ -120,12 +120,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " sets sv to source any changes to init.vim
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-"" sets tb to open new term to bottom
-nnoremap <leader>tb :term ++rows=20<cr>
-"
-"" sets tr to open new term to right
-nnoremap <leader>tr :vert term<cr>
-
 " sets tn to next tab
 nnoremap <leader>tn :tabn<cr>
 
@@ -248,9 +242,7 @@ tnoremap <C-j> <c-\><c-n><c-w>j
 tnoremap <C-k> <c-\><c-n><c-w>k
 tnoremap <C-l> <c-\><c-n><c-w>l
 
-" close terminal with F12
-tnoremap <F12> <C-W>N:q!<cr>
-
+tnoremap <C-n> <C-\><C-n>
 " }}}
 
 " Autocmd Groups ---------------------------- {{{
