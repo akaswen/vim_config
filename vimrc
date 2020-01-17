@@ -204,7 +204,7 @@ nnoremap <leader>nt :NERDTreeToggle<Enter>
 " }}}
 
 " Visual Mappings----------------- {{{
-" allows copying text to system clipboard with control-c - 
+" allows copying text to system clipboard with control-c -
 " linux needs dependency installed, but mac uses something else
 " sudo apt-get update && sudo apt-get install vim-gtk
 
@@ -258,48 +258,37 @@ augroup autosave
 augroup END
 
 function! AutoSave()
-  if strlen(expand('%:e')) > 0 " checks if buffer is a file type and not directory
-    if &buftype !=# 'terminal'
-      if &modified
-        :w
-      endif
+  if &buftype !=# 'terminal' || &buftype != nofile
+    if &modified
+      :w
     endif
   endif
 endfunction
 
-" add jbuilder syntax highlighting
-augroup jbuilder_files
-  autocmd!
-  autocmd BufNewFile,BufRead *.json.jbuilder set ft=ruby
-augroup END
-
-" removes numbers from terminal
-"augroup term_no_num
-"  autocmd!
-"  autocmd TermOpen * setlocal nonumber norelativenumber
-"augroup END
-
 " removes white space from ends of lines upon closing a file
 augroup remove_whitespace
   autocmd!
-  autocmd BufLeave *.rb,*.jbuilder,*.js,*.yml,*.vim call RemoveWhiteSpace()
+  autocmd BufLeave * call RemoveWhiteSpace()
 augroup END
 
 function! RemoveWhiteSpace()
-  let current_line = line('.')
-
-  %s/\s*$//g
-  if &modified
-    execute "w"
+  if &modifiable
+ruby << EOF
+  buf = Vim::Buffer.current
+  (1..buf.count).each do |n|
+    line = buf[n]
+    if line.match?(/\s+$/)
+      buf[n] = line.rstrip
+    end
+  end
+EOF
   endif
-
-  execute "normal! " . current_line . "G"
 endfunction
 
 " Autocmd for plugins ---------------- {{{
 augroup nerd_tree
   autocmd!
-  
+
   autocmd vimenter * call OpenNerdTree()
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
@@ -308,11 +297,11 @@ function! OpenNerdTree()
   if !(&diff)
     NERDTree
     execute "normal! \<c-w>w"
-    if expand('%') == '' 
+    if expand('%') == ''
       execute "normal! \<c-w>w"
     endif
   endif
 endfunction
 "  }}}
 
-" }}}
+" }}
