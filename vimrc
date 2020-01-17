@@ -127,7 +127,7 @@ nnoremap <leader>tn :tabn<cr>
 nnoremap <leader>tp :tabp<cr>
 
 " closes tab with q
-nnoremap <leader>q :q<cr>
+nnoremap <leader>q :q!<cr>
 
 " sets w to change to next buffer
 nnoremap <C-w>w <nop>
@@ -258,7 +258,7 @@ augroup autosave
 augroup END
 
 function! AutoSave()
-  if &buftype !=# 'terminal' || &buftype != nofile
+  if &buftype !=# 'terminal' && &buftype != "nofile"
     if &modified
       :w
     endif
