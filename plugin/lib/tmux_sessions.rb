@@ -17,6 +17,7 @@ module TmuxSessions
       else
         @sessions = []
       end
+      @sessions.unshift(Session.new(name: 'new session', date: nil))
     end
   end
 

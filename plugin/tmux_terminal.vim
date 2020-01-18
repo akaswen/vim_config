@@ -1,4 +1,9 @@
 let w:selecting_terminal = 0
+set cmdheight=2
+
+if !exists('w:current_session')
+  let w:current_session = "new session"
+endif
 
 " open terminal with F12
 nnoremap <F12> :call <SID>InitiateTerminalSelection()<cr>
@@ -25,7 +30,7 @@ ruby << EOF
     end
   end
   if no_term_open
-    Vim.command("call <SID>OpenTerminal()") 
+    Vim.command("call <SID>OpenTerminal()")
   end
 EOF
 endfunction
@@ -39,10 +44,15 @@ ruby << EOF
 
   require 'tmux_sessions'
 
-  sessions = TmuxSessions::Sessions.new
-  names = sessions.sessions.map(&:name)
   Vim.command("call popup_clear()")
-  Vim.command("call popup_create('#{names.join(' ')}', {})")
+  sessions = TmuxSessions::Sessions.new
+  current_width = 1
+  names = sessions.sessions.map(&:name).each_with_index do |name, i|
+    highlight = 'Comment'
+    highlight = 'Search' if name == Vim.evaluate('w:current_session')
+    Vim.command("call popup_create('#{name}', {'col': #{current_width}, 'line': 999, 'highlight': '#{highlight}'})")
+    current_width += name.length + 2
+  end
 EOF
 endfunction
 
