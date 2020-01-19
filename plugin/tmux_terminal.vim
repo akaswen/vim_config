@@ -103,3 +103,20 @@ function! s:OpenExistingSession(session_name)
   wincmd J
   resize 20
 endfunction
+
+nnoremap <expr> <BS> t:selecting_terminal ? ':call <SID>DeleteSession()<cr>':'<BS>'
+
+function! s:DeleteSession()
+  if t:current_session !=# 'new session' || t:current_session !=# 'close'
+    let message = 'Are you sure you want to kill session ' . t:current_session . "? y/n: "
+    let decision = input(message)
+    if decision == 'y'
+      silent execute "!tmux kill-session -t " . t:current_session
+      let t:current_session = 'new session'
+      let t:selecting_terminal = 0
+      call popup_clear()
+      redraw!
+    endif
+  endif
+endfunction
+
