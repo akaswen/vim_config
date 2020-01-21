@@ -1,5 +1,3 @@
-let t:selecting_terminal = 0
-let t:current_session = "new session"
 set cmdheight=2
 
 ruby << EOF
@@ -17,6 +15,14 @@ nnoremap <F12> :call <SID>InitiateTerminalSelection()<cr>
 tnoremap <F12> <C-W>N:q!<cr>
 
 function! s:InitiateTerminalSelection()
+  if !exists('t:selecting_terminal')
+    let t:selecting_terminal = 0
+  endif
+
+  if !exists('t:current_session')
+    let t:current_session = "new session"
+  endif
+
   if t:selecting_terminal
     call <SID>ChangeSelection()
   else
@@ -104,7 +110,7 @@ function! s:OpenExistingSession(session_name)
   resize 20
 endfunction
 
-nnoremap <expr> <BS> t:selecting_terminal ? ':call <SID>DeleteSession()<cr>':'<BS>'
+nnoremap <expr> <BS> (exists('t:selecting_terminal') && t:selecting_terminal) ? ':call <SID>DeleteSession()<cr>':'<BS>'
 
 function! s:DeleteSession()
   if t:current_session !=# 'new session' || t:current_session !=# 'close'
