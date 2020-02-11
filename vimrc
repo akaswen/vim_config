@@ -89,9 +89,6 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " sets highlight color to allow ale to work with gruvbox
 highlight ALEWarning ctermbg=65
 
-" Use deoplete for autocompletion
-let g:deoplete#enable_at_startup = 1
-
 colorscheme gruvbox
 
 " config for indent lines
@@ -100,7 +97,7 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_auto_colors = 0
 
 " config for vim airlines
-let g:airline_section_c = '%t%m (buf %n)'
+let g:airline_section_c = '%f (buf %n)'
 let g:airline_section_y = ''
 let g:airline_section_x = ''
 let g:airline_section_z = 'line: %l/%L, col: %c'
