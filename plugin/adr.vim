@@ -21,5 +21,15 @@ function! FormatAdr()
   normal! o
   normal! o## Pros and Cons of the Options
   normal! o
+  normal! o### Option 1
+  normal! o
+  normal! ogood because:
+  normal! obad because:
+  normal! o
+  normal! o### Option 2
+  normal! o
+  normal! ogood because:
+  normal! obad because:
+  normal! o
   normal! gg
 endfunction
