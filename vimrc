@@ -225,9 +225,23 @@ inoremap <C-l> <Esc><c-w>l
 
 " Plugin Related Command Mappings ------- {{{
 " ZSH abbreviations for fugitive commands
-cnoreabbrev gp Gpush
+cnoreabbrev gp call PushBranch()
 cnoreabbrev ggfl Gpush --force
-cnoreabbrev gup Gpull --rebase origin
+cnoreabbrev gup call ForcePushBranch()
+
+function! GitBranch()
+    return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! PushBranch()
+  let branch = GitBranch()
+  execute "Gpush -u origin " . branch
+endfunction
+
+function! ForcePushBranch()
+  let branch = GitBranch()
+  execute "Gpush --force -u origin " . branch
+endfunction
 
 " }}}
 " }}}
