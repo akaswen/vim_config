@@ -14,7 +14,7 @@ nnoremap <F12> :call <SID>InitiateTerminalSelection()<cr>
 " close terminal with F12
 tnoremap <F12> <C-W>N:q!<cr>
 
-function! s:InitiateTerminalSelection()
+function! s:InitiateVariables()
   if !exists('t:selecting_terminal')
     let t:selecting_terminal = 0
   endif
@@ -22,6 +22,10 @@ function! s:InitiateTerminalSelection()
   if !exists('t:current_session')
     let t:current_session = "new session"
   endif
+endfunction
+
+function! s:InitiateTerminalSelection()
+  call <SID>InitiateVariables()
 
   if t:selecting_terminal
     call <SID>ChangeSelection()
@@ -126,3 +130,7 @@ function! s:DeleteSession()
   endif
 endfunction
 
+augroup open_quickfix
+  autocmd!
+  autocmd BufRead quickfix call <SID>InitiateVariables()
+augroup END
