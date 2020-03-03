@@ -134,3 +134,18 @@ augroup open_quickfix
   autocmd!
   autocmd BufRead quickfix call <SID>InitiateVariables()
 augroup END
+
+nnoremap <expr> m (exists('t:selecting_terminal') && t:selecting_terminal) ? ':call <SID>RenameSession()<cr>':'<C-m>'
+
+function! s:RenameSession()
+  if t:current_session == 'new sesion' || t:current_session == 'close'
+    return
+  endif
+
+  let new_session = input('Enter new session name: ')
+  let command = "!tmux rename-session -t " . t:current_session . " " . new_session
+  echom command
+  silent execute command
+  redraw!
+  call <SID>OpenExistingSession(new_session)
+endfunction
