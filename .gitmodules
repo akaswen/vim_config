@@ -32,3 +32,6 @@
 	path = bundle/tabnine-vim
 	url = https://github.com/zxqfl/tabnine-vim
 	branch = master
+[submodule "bundle/vim-go"]
+	path = bundle/vim-go
+	url = https://github.com/fatih/vim-go
