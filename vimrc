@@ -148,7 +148,7 @@ endfunction
 
 " quickfix window mappings
 nnoremap t :call OpenQuickFix('t')<cr>
-nnoremap v :call OpenQuickFix('v')<cr>
+nnoremap v :call OpenQuickFix('i')<cr>
 nnoremap s :call OpenQuickFix('s')<cr>
 nnoremap <cr> :call OpenQuickFix('enter')<cr>
 
@@ -156,7 +156,7 @@ function! OpenQuickFix(letter)
   if &buftype ==# 'quickfix'
     if a:letter ==# 't'
       set switchbuf=newtab
-    elseif a:letter ==# 'v'
+    elseif a:letter ==# 'i'
       set switchbuf=vsplit
     elseif a:letter ==# 's'
       set switchbuf=split

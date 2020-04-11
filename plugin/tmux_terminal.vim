@@ -135,7 +135,7 @@ augroup open_quickfix
   autocmd BufRead quickfix call <SID>InitiateVariables()
 augroup END
 
-nnoremap <expr> m (exists('t:selecting_terminal') && t:selecting_terminal) ? ':call <SID>RenameSession()<cr>':'<C-m>'
+nnoremap <expr> <C-m> (exists('t:selecting_terminal') && t:selecting_terminal) ? ':call <SID>RenameSession()<cr>':'<C-m>'
 
 function! s:RenameSession()
   if t:current_session == 'new sesion' || t:current_session == 'close'
