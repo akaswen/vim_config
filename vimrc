@@ -148,7 +148,7 @@ endfunction
 
 " quickfix window mappings
 nnoremap t :call OpenQuickFix('t')<cr>
-nnoremap v :call OpenQuickFix('i')<cr>
+nnoremap i :call OpenQuickFix('i')<cr>
 nnoremap s :call OpenQuickFix('s')<cr>
 nnoremap <cr> :call OpenQuickFix('enter')<cr>
 
