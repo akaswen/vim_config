@@ -147,9 +147,9 @@ function! SwitchBuffers(num)
 endfunction
 
 " quickfix window mappings
-nnoremap t :call OpenQuickFix('t')<cr>
-nnoremap i :call OpenQuickFix('i')<cr>
-nnoremap s :call OpenQuickFix('s')<cr>
+nnoremap <leader>t :call OpenQuickFix('t')<cr>
+nnoremap <leader>i :call OpenQuickFix('i')<cr>
+nnoremap <leader>s :call OpenQuickFix('s')<cr>
 nnoremap <cr> :call OpenQuickFix('enter')<cr>
 
 function! OpenQuickFix(letter)
@@ -165,12 +165,6 @@ function! OpenQuickFix(letter)
     endif
 
     execute "normal! \<cr>"
-  else
-    if a:letter ==# 'enter'
-      execute "normal! \<cr>"
-    else
-      execute "normal! " . a:letter
-    endif
   endif
 endfunction
 
@@ -190,6 +184,9 @@ nnoremap <C-h> <c-w>h
 nnoremap <C-j> <c-w>j
 nnoremap <C-k> <c-w>k
 nnoremap <C-l> <c-w>l
+
+" easy redraw
+nnoremap <leader>r :redraw!<cr>
 
 " Plugin Related normal Mappings -------------- {{{
 " binds :ALToggle to at
