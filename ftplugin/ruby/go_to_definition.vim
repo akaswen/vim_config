@@ -6,11 +6,7 @@ function! s:GrepDefinition()
   normal! viwy
 
   if @@ !=# "."
-    silent execute "grep! -R --exclude-dir={node_modules,coverage} " . shellescape("def " . @@) . " ."
-    copen
-    nohl
-    wincmd J
-    redraw!
+    silent execute "Ack! '(def|class|module) " . shellescape(@@) . "' ."
     call matchadd('Search', @@)
   endif
 
