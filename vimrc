@@ -146,28 +146,6 @@ function! SwitchBuffers(num)
   endwhile
 endfunction
 
-" quickfix window mappings
-nnoremap <leader>t :call OpenQuickFix('t')<cr>
-nnoremap <leader>i :call OpenQuickFix('i')<cr>
-nnoremap <leader>s :call OpenQuickFix('s')<cr>
-nnoremap <cr> :call OpenQuickFix('enter')<cr>
-
-function! OpenQuickFix(letter)
-  if &buftype ==# 'quickfix'
-    if a:letter ==# 't'
-      set switchbuf=newtab
-    elseif a:letter ==# 'i'
-      set switchbuf=vsplit
-    elseif a:letter ==# 's'
-      set switchbuf=split
-    elseif a:letter ==# 'enter'
-      set switchbuf=useopen
-    endif
-
-    execute "normal! \<cr>"
-  endif
-endfunction
-
 " vimdiff mappings
 nnoremap <leader>d :call ToggleDiffMode()<cr>
 
