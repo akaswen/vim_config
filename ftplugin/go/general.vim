@@ -1,7 +1,7 @@
 set shiftwidth=8
 set softtabstop=8
 
-augroup fmt_go
+augroup auto_import
   autocmd!
-  autocmd BufWritePost *.go execute "GoFmt"
+  autocmd VimLeavePre,FocusLost,CursorHold,CursorHoldI,WinLeave,TabLeave,InsertLeave,BufDelete,BufWinLeave *.go if &buftype != 'nofile' | execute "GoImports" | execute "GoFmt" | endif
 augroup END
