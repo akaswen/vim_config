@@ -113,6 +113,8 @@ let NERDTreeShowHidden=1
 
 let g:NERDTreeWinSize=50
 
+let g:go_list_height = 10
+
 " }}}
 
 " Normal Mappings----------------- {{{
@@ -138,18 +140,6 @@ nnoremap <C-w><C-w> <nop>
 " sets p to change to previous buffer
 nnoremap <C-w>p <nop>
 nnoremap <C-w><C-p> <nop>
-
-" shortkey for switching buffers
-nnoremap <leader>b :call SwitchBuffers()<left>
-
-function! SwitchBuffers(num)
-  let currentBuffer = bufnr('%')
-  while currentBuffer !=# a:num
-    execute "normal! \<c-w>w"
-
-    let currentBuffer = bufnr('%')
-  endwhile
-endfunction
 
 " vimdiff mappings
 nnoremap <leader>d :call ToggleDiffMode()<cr>
@@ -212,6 +202,16 @@ inoremap <C-l> <Esc><c-w>l
 cnoreabbrev gp call PushBranch()
 cnoreabbrev ggfl Gpush --force
 cnoreabbrev gup call ForcePushBranch()
+
+" go debugger
+cnoreabbrev gdb GoDebugStart
+cnoreabbrev gdbt GoDebugTest
+cnoreabbrev gc GoDebugContinue
+cnoreabbrev gn GoDebugNext
+cnoreabbrev gs GoDebugStep
+cnoreabbrev gso GoDebugStepOut
+cnoreabbrev gset GoDebugSet
+cnoreabbrev gprint GoDebugPrint
 
 function! GitBranch()
     return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
