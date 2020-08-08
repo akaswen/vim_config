@@ -251,6 +251,7 @@ function! AutoSave()
   if &buftype !=# 'terminal' && &buftype != "nofile"
     if &modified
       :w
+      :ALELint
     endif
   endif
 endfunction
