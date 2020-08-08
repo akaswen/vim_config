@@ -89,6 +89,11 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " sets highlight color to allow ale to work with gruvbox
 highlight ALEWarning ctermbg=65
 
+" sets specific linters for ale
+let g:ale_linters = {
+      \ 'ruby': ['rubocop'],
+      \}
+
 colorscheme gruvbox
 
 " config for indent lines
