@@ -162,8 +162,10 @@ nnoremap <C-l> <c-w>l
 nnoremap <leader>r :redraw!<cr>
 
 " easy window resize
-nnoremap <leader>< :vertical resize -5<cr>
-nnoremap <leader>> :vertical resize +5<cr>
+nnoremap <leader><up> :resize +5<cr>
+nnoremap <leader><down> :resize -5<cr>
+nnoremap <leader><left> :vertical resize -5<cr>
+nnoremap <leader><right> :vertical resize +5<cr>
 
 " Plugin Related normal Mappings -------------- {{{
 " binds :ALToggle to at
