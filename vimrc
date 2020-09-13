@@ -115,6 +115,14 @@ let g:NERDTreeWinSize=50
 
 let g:go_list_height = 10
 
+" delve window sizes for vim-go
+let g:go_debug_windows = {
+      \   'vars':       'leftabove 30vnew',
+      \   'stack':      'leftabove 20new',
+      \   'goroutines': 'botright 15new',
+      \   'out':        'botright 15new',
+      \ }
+
 " }}}
 
 " Normal Mappings----------------- {{{
