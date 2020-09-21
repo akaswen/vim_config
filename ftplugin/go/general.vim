@@ -9,11 +9,15 @@ nnoremap <leader>s :GoDebugStep<cr>
 nnoremap <leader>ft :GoTestFunc<cr>
 nnoremap <leader>p :GoDebugBreakpoint<cr>
 
-nnoremap <leader>t :call ToggleDebugTest()<cr>
+nnoremap <leader>t :call ToggleDebug()<cr>
 
-function! ToggleDebugTest()
+function! ToggleDebug()
   if exists(":GoDebugStart")
-    GoDebugTest
+    if expand('%:t') =~ '\v_test.go\Z'
+      GoDebugTest .
+    else
+      GoDebugStart .
+    endif
   else
     GoDebugStop
   endif
