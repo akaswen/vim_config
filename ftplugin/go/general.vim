@@ -2,7 +2,7 @@ set shiftwidth=8
 set softtabstop=8
 
 nnoremap <leader>d :GoDef<cr>
-nnoremap <leader>i :GoImports<cr>:GoFmt<cr>zO
+nnoremap <leader>i :GoImports<cr>:GoFmt<cr>zR
 nnoremap <leader>b :GoDebugBreakpoint<cr>
 nnoremap <leader>c :GoDebugContinue<cr>
 nnoremap <leader>s :GoDebugStep<cr>
